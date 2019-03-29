@@ -1,6 +1,7 @@
 package ro.psiholigia.downtimeclock;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.session.MediaSession;
@@ -183,7 +184,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
+            Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            //myIntent.putExtra("key", value); //Sending data to the other Activity
+            MainActivity.this.startActivity(myIntent);
             Snackbar.make(backImageView, "Is not yet implemented! \n I will come soon.", Snackbar.LENGTH_LONG).show();
             return true;
         }
@@ -191,6 +194,10 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     *
+     * @param secondSet number of seconds set to be count down
+     */
     public void setCount(int secondSet) {
         countDownTimer = new CountDownTimer((secondSet + 600) * 1000, 1000) {
             @Override
